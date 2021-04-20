@@ -20,10 +20,10 @@ return array(
 
     // Datebankkonfiguration
     'database' => array(
-        'host'     => 'DATABASE_HOST',
-        'username' => 'DATABASE_USER',
-        'password' => 'DATABASE_PASSWORD',
-        'database' => 'DATABASE_NAME',
+        'host'     => 'localhost',
+        'username' => 'tim',
+        'password' => 'tim187!',
+        'database' => 'lockify',
     ),
 
 );
