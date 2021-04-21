@@ -7,6 +7,7 @@ body {
   /* Margin bottom by footer height */
   margin-bottom: 60px;
 }
+
 body > .container {
   padding: 80px 15px 0;
 }
@@ -23,4 +24,41 @@ body > .container {
 .footer > .container {
   padding-right: 15px;
   padding-left: 15px;
+}
+
+nav{
+  background-color: #1D1D2C;
+}
+
+.nav-link{
+  color: #F7F4E9;
+}
+
+.logo{
+  font-size: 18px;
+
+}
+
+.logo2{
+  font-size: 18px;
+}
+
+.login{
+  align-content: flex-end;
+}
+
+.red{
+  color: #E40C2B;
+}
+
+.blue{
+  color: #3CBCC3;
+}
+
+.yellow{
+  color: #EBA93F;
+}
+
+.white{
+  color: #F7F4E9;
 }

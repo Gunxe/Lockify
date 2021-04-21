@@ -1,0 +1,31 @@
+body{
+    background-color: #283747;
+    background-image: url("../images/Background.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.start{
+    text-align: center;
+}
+
+.create_text{
+    font-size: 150%;
+}
+
+.start h1{
+    font-size: 400%;
+}
+
+.start h2{
+    font-size: 300%;
+}
+
+#welcome_screen{
+    position: absolute;
+    top: 50%;
+
+    height: 30em;
+    margin-top: -15em;
+}
