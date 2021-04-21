@@ -21,7 +21,7 @@ class UserController
         $view->display();
     }
 
-    public function create()
+    public function create()   
     {
         $view = new View('user/create');
         $view->title = 'Benutzer erstellen';
@@ -32,13 +32,12 @@ class UserController
     public function doCreate()
     {
         if (isset($_POST['send'])) {
-            $firstName = $_POST['fname'];
-            $lastName = $_POST['lname'];
+            $userName = $_POST['uname'];
             $email = $_POST['email'];
             $password = $_POST['password'];
 
             $userRepository = new UserRepository();
-            $userRepository->create($firstName, $lastName, $email, $password);
+            $userRepository->create($userName, $email, $password);
         }
 
         // Anfrage an die URI /user weiterleiten (HTTP 302)

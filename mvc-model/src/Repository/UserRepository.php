@@ -31,19 +31,50 @@ class UserRepository extends Repository
      *
      * @throws Exception falls das Ausführen des Statements fehlschlägt
      */
-    public function create($firstName, $lastName, $email, $password)
+    public function create($userName, $email, $password)
     {
         $password = sha1($password);
 
-        $query = "INSERT INTO $this->tableName (firstName, lastName, email, password) VALUES (?, ?, ?, ?)";
+        $query = "INSERT INTO $this->tableName (username, email, password) VALUES (?, ?, ?)";
 
         $statement = ConnectionHandler::getConnection()->prepare($query);
-        $statement->bind_param('ssss', $firstName, $lastName, $email, $password);
+        $statement->bind_param('sss', $userName, $email, $password);
 
         if (!$statement->execute()) {
             throw new Exception($statement->error);
         }
 
         return $statement->insert_id;
+    }
+
+    public function readByUsernamePassword($userName, $password){
+                
+        $password = sha1($password);
+
+        // Query erstellen
+        $query = "SELECT * FROM {$this->tableName} WHERE username=? and password=?";
+
+        // Datenbankverbindung anfordern und, das Query "preparen" (vorbereiten)
+        // und die Parameter "binden"
+        $statement = ConnectionHandler::getConnection()->prepare($query);
+        $statement->bind_param('ss', $userName, $password);
+    
+        // Das Statement absetzen
+        $statement->execute();
+    
+        // Resultat der Abfrage holen
+        $result = $statement->get_result();
+        if (!$result) {
+            throw new Exception($statement->error);
+        }
+        
+        // Ersten Datensatz aus dem Reultat holen
+        $row = $result->fetch_object();
+        
+        // Datenbankressourcen wieder freigeben
+        $result->close();
+        
+        // Den gefundenen Datensatz zurückgeben
+        return $row;
     }
 }

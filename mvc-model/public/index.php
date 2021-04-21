@@ -14,6 +14,8 @@ require_once __DIR__.'/../vendor/autoload.php';
 use App\Dispatcher\Dispatcher;
 use App\Exception\ExceptionListener;
 
+session_start();
+
 $listener = new ExceptionListener();
 set_exception_handler([$listener, "handleException"]);
 Dispatcher::dispatch();

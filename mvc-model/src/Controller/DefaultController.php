@@ -43,6 +43,9 @@ class DefaultController
         $view = new View('default/index');
         $view->title = 'Startseite';
         $view->style = 'default';
+        if(isset( $_SESSION['login'])){
+            $view->login = $_SESSION['login'];      
+        }
         $view->display();
     }
 }
