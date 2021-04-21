@@ -78,3 +78,4 @@ class UserRepository extends Repository
         return $row;
     }
 }
+?>

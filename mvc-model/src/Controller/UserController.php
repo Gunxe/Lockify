@@ -24,8 +24,7 @@ class UserController
     public function create()   
     {
         $view = new View('user/create');
-        $view->title = 'Benutzer erstellen';
-        $view->heading = 'Benutzer erstellen';
+        $view->title = 'Create User';
         $view->display();
     }
 
