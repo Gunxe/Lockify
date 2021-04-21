@@ -40,8 +40,6 @@ class PasswordRepository extends Repository
 
         $statement = ConnectionHandler::getConnection()->prepare($query);
         $statement->bind_param('isssss', $_SESSION['id'], $title, $userName, $password, $email, $notes);
-        
-        $statement->execute();
 
         if (!$statement->execute()) {
             throw new Exception($statement->error);
