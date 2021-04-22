@@ -10,9 +10,9 @@
     echo "<ul><h2>Notes: $password->notes</h2></ul>";
 
     ?>
-    <button class="btn btn-lg btn-outline-secondary"  href="/">Home</button>
+    <button class="btn btn-lg btn-outline-secondary" onclick="document.location.href='/password'" >Back</button>
     <button class="btn btn-lg btn-outline-dark">Edit</button>
     <button class="btn btn-lg btn-outline-danger">Delete</button>
 </ul>
 
-</div
+</div>

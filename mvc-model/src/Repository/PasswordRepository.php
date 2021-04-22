@@ -82,10 +82,25 @@ class PasswordRepository extends Repository
         return $rows;
     }
 
-    public function update()
+    public function update($passwordID, $title, $userName, $password, $email, $notes)
     {
+        $query = "SELECT * FROM {$this->tableName} WHERE userID=?";
+
+        // Datenbankverbindung anfordern und, das Query "preparen" (vorbereiten)
+        // und die Parameter "binden"
+        $statement = ConnectionHandler::getConnection()->prepare($query);
+        $statement->bind_param('i', $passwordID);
+
+        $param = '';
+
+        $result = $statement->get_result();
+        if (!$result) {
+            throw new Exception($statement->error);
+        }
+
+        
+
         $query = "UPDATE {$this->tableName} SET";
-        if()
 
     }
 }

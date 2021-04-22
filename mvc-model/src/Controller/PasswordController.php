@@ -70,7 +70,8 @@
             if (!isset($_SESSION['login']) && !$_SESSION['login']){
                 header("location:/login/");
             }
-            if (!isset($_SESSION['login']) && !$_SESSION['login'] && $view->password->userID == $_SESSION['id']){
+
+            if (!isset($_SESSION['login']) || !$_SESSION['login'] || $view->password->userID != $_SESSION['id']){
                 header("location:/password/");
             }
             $view->display();
@@ -151,7 +152,7 @@
                     $password = $_POST['password'];
                 }else{
                     echo 'Password should be at least 8 characters in length and should include at least one upper case letter, one number, and one special character.';
-                    return;
+                return;
                 }
 
                 if (isset($_POST['email']) && ! empty($_POST['email'])) {
@@ -165,7 +166,7 @@
                 }
                 
                 $passwordRepository = new PasswordRepository();
-                $passwordRepository->update($title, $username, $password, $email, $notes);
+                $passwordRepository->update($_GET['passID'], $title, $username, $password, $email, $notes);
             }   
         }
     }

@@ -34,7 +34,6 @@
 	</form>
 </div>
 
-
 <script>
 	const display = document.querySelector("input.randomPassword"),
 	button = document.querySelector("button"),
