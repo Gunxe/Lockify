@@ -108,3 +108,47 @@ h2{
 .show button{
   float: right;
 }
+
+.box{
+  background-color: #fff; 
+  border: 1px solid #e6e6e6; 
+  border-radius: 8px; 
+  padding-left: 5%;
+  padding-right: 5%; 
+  margin: 0 0 10px;
+
+  -webkit-box-shadow: 13px 12px 20px -4px rgba(0,0,0,0.47);
+  -moz-box-shadow: 13px 12px 20px -4px rgba(0,0,0,0.47);
+  box-shadow: 13px 12px 20px -4px rgba(0,0,0,0.47);
+}
+
+.box hr{
+
+  border: 3px solid #3CBCC3;
+  border-radius: 3px;
+  opacity: 100%;
+}
+
+.box:chil
+
+.form-createPassword form{
+  padding: 0 40px;
+}
+.form-createPassword form input{
+  border: 1px solid #efefef;
+}
+
+.box form div{
+ margin-bottom: 2%;
+}
+
+.box form div input{
+  border-color: grey;
+ }
+ .box form div textarea{
+  border-color: grey;
+ }
+
+.box button{
+  margin-bottom: 3%;
+}

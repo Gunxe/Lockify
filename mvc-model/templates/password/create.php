@@ -1,4 +1,9 @@
-<div class="row">
+
+
+<div class="form-createPassword box">
+	<h1 style="text-align: center;">Create Password</h1>
+	<hr>
+	
 	<form action="/password/doCreate" method="post" class="col-6">
 		<div class="form-group">
 	  	<input id="title" name="title" type="text" class="form-control" placeholder="Title">
@@ -8,16 +13,16 @@
 		</div>
 
         <div class="form-group">
-        <input id="range" type="range" min="8" max="16" value="12" > <span></span>
+        <input id="range" type="range" min="8" max="16" value="12" oninput="this.nextElementSibling.value = this.value" > <output>12</output>
         </div>
 
 			<div class="input-data">
         		<div class="display" >
-          			<input type="text" class="randomPassword">
+          			<input type="text" class="randomPassword form-control">
           			<span class="far fa-copy" onclick="copy()"></span>
           			<span class="fas fa-copy" onclick="copy()"></span>
         		</div>
-				<button>Generate Password</button>
+				<button  class="btn btn-outline-secondary">Generate Password</button>
       		</div>
 
 		<div class="form-group">
@@ -30,7 +35,7 @@
 		<div class="form-group">
 	  	<textarea id="notes" name="notes" maxlength="1000" class="form-control" placeholder="Notes"></textarea>
 		</div>
-		<button type="submit" name="send" class="btn btn-primary">Submit</button>
+		<button type="submit" name="send" class="btn btn-outline-success">Submit</button>
 	</form>
 </div>
 
