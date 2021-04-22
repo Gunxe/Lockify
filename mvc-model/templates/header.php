@@ -26,11 +26,19 @@
           <li class="nav-item">
             <a class="nav-link" href="/password">Passwort</a>
           </li>
-          <li class="nav-item justify-content-end">
+          <li class="nav-item">
           <?php
-          echo ((isset($login) && $login) ? '<a class="nav-link" href="/login/logout"><span class="login">Logout</span></a>' : '<a class="nav-link" href="/login"><span class="login">Login</span></a>');
+            echo ((isset($login) && $login) ? '<a class="nav-link" href="/login/logout"><span class="login">Logout</span></a>' : '<a class="nav-link" href="/login"><span class="login">Login</span></a>');
           ?>
           </li>
+          <?php
+            if(!isset($login) || !$login){
+              echo 
+                '<li class="nav-item">
+                  <a class="nav-link" href="/user/create/">Register</a>
+                </li>';
+            }
+          ?>
         </ul>
       </nav>
     </header>

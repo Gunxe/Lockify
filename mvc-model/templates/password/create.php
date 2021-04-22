@@ -1,6 +1,6 @@
 
 
-<div class="form-createPassword box">
+<div class="form box">
 	<h1 style="text-align: center;">Create Password</h1>
 	<hr>
 	

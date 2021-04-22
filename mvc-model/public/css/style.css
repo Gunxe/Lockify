@@ -131,10 +131,10 @@ h2{
 
 .box:chil
 
-.form-createPassword form{
+.form form{
   padding: 0 40px;
 }
-.form-createPassword form input{
+.form form input{
   border: 1px solid #efefef;
 }
 
@@ -145,7 +145,7 @@ h2{
 .box form div input{
   border-color: grey;
  }
- .box form div textarea{
+.box form div textarea{
   border-color: grey;
  }
 
