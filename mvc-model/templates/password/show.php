@@ -11,8 +11,8 @@
 
     ?>
     <button class="btn btn-lg btn-outline-secondary" onclick="document.location.href='/password'" >Back</button>
-    <button class="btn btn-lg btn-outline-dark">Edit</button>
-    <button class="btn btn-lg btn-outline-danger">Delete</button>
+    <button class="btn btn-lg btn-outline-dark" href="" onclick="document.location.href='/password/update?id=<?= $password->id?>'">Edit</button>
+    <button class="btn btn-lg btn-outline-danger" onclick="document.location.href='/password/delete?id=<?= $password->id?>'">Delete</button>
 </ul>
 
 </div>

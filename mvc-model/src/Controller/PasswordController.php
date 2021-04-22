@@ -166,8 +166,16 @@
                 }
                 
                 $passwordRepository = new PasswordRepository();
-                $passwordRepository->update($_GET['passID'], $title, $username, $password, $email, $notes);
+                $passwordRepository->update($_GET['password_ID'], $title, $username, $password, $email, $notes);
             }   
+        }
+        public function delete()
+        {
+            $passwordRepository = new PasswordRepository();
+            $passwordRepository->deleteById($_GET['id']);
+    
+            // Anfrage an die URI /user weiterleiten (HTTP 302)
+            header('Location: /password');
         }
     }
 ?>

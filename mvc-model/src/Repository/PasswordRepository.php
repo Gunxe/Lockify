@@ -97,10 +97,36 @@ class PasswordRepository extends Repository
         if (!$result) {
             throw new Exception($statement->error);
         }
-
-        
-
         $query = "UPDATE {$this->tableName} SET";
+        
+        if($result->title != $title){
+            $query += "titel = $title";
+        }
+        if($result->username != $userName){
+            $query += "username = $userName";
+        }
+        
+        if($result->password != $password){
+            $query += "password = $password";
+        }
+
+        if($result->email != $email){
+            $query += "email = $email";
+        }
+        
+        if($result->notes != $notes){
+            $query += "notes = $notes";
+        }
+        
+        $query += "WHERE id = $passwordID ;";
+        $statement = ConnectionHandler::getConnection()->prepare($query);
+
+        if (!$statement->execute()) {
+            throw new Exception($statement->error);
+            echo new Exception($statement->error);
+        }
+
+        return $statement->insert_id;
 
     }
 }
