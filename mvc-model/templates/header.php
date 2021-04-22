@@ -24,13 +24,7 @@
             <a class="nav-link active" href="/"><span class="logo blue">&lt;/&gt;</span><span class="logo2 red">Lockify</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="#">About us</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Function</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Passwort</a>
+            <a class="nav-link" href="/password">Passwort</a>
           </li>
           <li class="nav-item justify-content-end">
           <?php

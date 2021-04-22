@@ -34,7 +34,8 @@ class PasswordRepository extends Repository
 
     public function create($title, $userName, $password, $email, $notes)
     {
-        $password = sha1($password);
+
+        $password = openssl_encrypt($password,'cast5-cbc', '187');
 
         $query = "INSERT INTO $this->tableName (userID, title, username, password, email, notes) VALUES (?, ?, ?, ?, ?, ?)";
 
@@ -43,6 +44,7 @@ class PasswordRepository extends Repository
 
         if (!$statement->execute()) {
             throw new Exception($statement->error);
+            echo new Exception($statement->error);
         }
 
         return $statement->insert_id;
@@ -50,7 +52,7 @@ class PasswordRepository extends Repository
 
     public function readByUserID($id)
     {
-        $query = "SELECT * FROM {$this->tableName} WHERE id=?";
+        $query = "SELECT * FROM {$this->tableName} WHERE userID=?";
 
         // Datenbankverbindung anfordern und, das Query "preparen" (vorbereiten)
         // und die Parameter "binden"
@@ -66,14 +68,25 @@ class PasswordRepository extends Repository
             throw new Exception($statement->error);
         }
 
+
         $rows = array();
         while ($row = $result->fetch_object()) {
+            $row->password = openssl_decrypt($row->password,'cast5-cbc', '187');
             $rows[] = $row;
         }
+
+        
 
         $result->close();
 
         return $rows;
+    }
+
+    public function update()
+    {
+        $query = "UPDATE {$this->tableName} SET";
+        if()
+
     }
 }
 ?>
