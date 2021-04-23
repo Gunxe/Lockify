@@ -102,6 +102,7 @@
                 }else{
                     $_SESSION['error'] = 'Title not set.';
                     header("location: /password/create");
+                    return;
                 }
 
                 if(isset($_POST['uname']) && ! empty($_POST['uname'])){
@@ -109,6 +110,7 @@
                 }else{
                     $_SESSION['error'] = 'Username not set.';
                     header("location: /password/create");
+                    return;
                 }
 
                 if($uppercase && $lowercase && $number && $specialChars && strlen($_POST['password']) >= 8) {
@@ -116,6 +118,7 @@
                 }else{
                     $_SESSION['error'] = 'Password should be at least 8 characters in length and should include at least one upper case letter, one number, and one special character.';
                     header("location: /password/create");
+                    return;
                 }
 
                 if (isset($_POST['email']) && ! empty($_POST['email'])) {
@@ -124,10 +127,12 @@
                     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
                         $_SESSION['error'] = 'This is not an email';
                         header("location: /password/create");
+                        return;
                     }
                 } else {
                     $_SESSION['error'] = 'Email not set';
                     header("location: /password/create");
+                    return;
                 }
                 
                 $passwordRepository = new PasswordRepository();
