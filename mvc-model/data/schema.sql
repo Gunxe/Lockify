@@ -21,5 +21,3 @@ CREATE TABLE password(
 
 INSERT INTO user (firstName, lastName, email, password) VALUES ('Ramon',  'Binz',  'ramon.binz@bbcag.ch',   sha2('ramon', 256));
 INSERT INTO user (firstName, lastName, email, password) VALUES ('Samuel', 'Wicky', 'samuel.wicky@bbcag.ch', sha2('samuel', 256));
-[15:54] Marti Marianne
-    https://stackoverflow.com/questions/9262109/simplest-two-way-encryption-using-php
