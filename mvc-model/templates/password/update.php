@@ -1,6 +1,7 @@
 <div class="box form">
 	<h1 style="text-align: center;">Edit Password</h1>
 	<hr>
+	<?= isset($_SESSION['error']) ? "<span class='error'>". $_SESSION['error'] . "</span>" : ""; unset($_SESSION['error']);?>
 	<form action="/password/doUpdate?password_ID=<?=$password->id?>" method="post" class="col-6">
 		<div class="form-group">
 	  	<input id="title" name="title" type="text" class="form-control" placeholder="Title" value="<?=$password->title;?>">

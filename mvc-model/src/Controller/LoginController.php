@@ -39,11 +39,16 @@
 
                 if (!$user){
                     header("location:/login/index");
+                    $_SESSION['error'] = "Password or username is wrong.";
                 }else{
                     $_SESSION['id'] = $user->id;
                     $_SESSION['login'] = true;
                     header("location:/");
                 }
+            }
+            else{
+                $_SESSION['error'] = "Please insert Username and Password.";
+                header('location: /login/');
             }
         }
         public function logOut()

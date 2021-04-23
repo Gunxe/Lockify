@@ -1,6 +1,7 @@
 <div class="box form">
 	<h1 style="text-align: center;">Register</h1>
 	<hr>
+	<?= isset($_SESSION['error']) ? "<span class='error'>". $_SESSION['error'] . "</span>" : ""; unset($_SESSION['error']);?>
 	<form action="/user/doCreate" method="post" class="col-6">
 		<div class="form-group">
 	  	<input id="uname" name="uname" type="text" class="form-control" placeholder="Username">

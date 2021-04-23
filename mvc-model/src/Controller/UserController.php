@@ -30,17 +30,44 @@ class UserController
 
     public function doCreate()
     {
-        if (isset($_POST['send'])) {
-            $userName = $_POST['uname'];
+
+        $uppercase = preg_match('@[A-Z]@', $_POST['password']);
+        $lowercase = preg_match('@[a-z]@', $_POST['password']);
+        $number    = preg_match('@[0-9]@', $_POST['password']);
+        $specialChars = preg_match('@[^\w]@', $_POST['password']);
+
+        if(isset($_POST['uname']) && ! empty($_POST['uname'])){
+            $uname = $_POST['uname'];
+        }else{
+            $_SESSION['error'] = 'Username not set.';
+            header("location: /user/create");
+            return;
+        }
+
+        if(isset($_POST['email']) && ! empty($_POST['email'])){
             $email = $_POST['email'];
+        }else{
+            $_SESSION['error'] = 'Email not set.';
+            header("location: /user/create");
+            return;
+        }
+
+        if($uppercase && $lowercase && $number && $specialChars && strlen($_POST['password']) >= 8) {
             $password = $_POST['password'];
+        }else{
+            $_SESSION['error'] = 'Password should be at least 8 characters in length and should include at least one upper case letter, one number, and one special character.';
+            header("location: /user/create");
+            return;
+        }
+
+        if (isset($_POST['send'])) {
 
             $userRepository = new UserRepository();
-            $userRepository->create($userName, $email, $password);
+            $userRepository->create($uname, $email, $password);
         }
 
         // Anfrage an die URI /user weiterleiten (HTTP 302)
-        header('Location: /user');
+        header('Location: /password');
     }
 
     public function delete()

@@ -152,3 +152,8 @@ h2{
 .box button{
   margin-bottom: 3%;
 }
+
+.error{
+  margin: 3%;
+  font-size: 130%;
+}

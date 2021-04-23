@@ -35,12 +35,15 @@ class PasswordRepository extends Repository
     public function create($title, $userName, $password, $email, $notes)
     {
 
-        $password = openssl_encrypt($password,'cast5-cbc', '187');
+        $ivlen = openssl_cipher_iv_length('cast5-cbc');
+        $iv = openssl_random_pseudo_bytes($ivlen);
+
+        $password = openssl_encrypt($password,'cast5-cbc', '187', 0, "12345678");
 
         $query = "INSERT INTO $this->tableName (userID, title, username, password, email, notes) VALUES (?, ?, ?, ?, ?, ?)";
 
         $statement = ConnectionHandler::getConnection()->prepare($query);
-        $statement->bind_param('isssss', $_SESSION['id'], $title, $userName, $password, $email, $notes);
+        $statement->bind_param('isssss', $_SESSION['id'], $title, $userName, $password, $email, htmlentities($notes));
 
         if (!$statement->execute()) {
             throw new Exception($statement->error);
@@ -68,10 +71,12 @@ class PasswordRepository extends Repository
             throw new Exception($statement->error);
         }
 
+        $ivlen = openssl_cipher_iv_length('cast5-cbc');
+        $iv = openssl_random_pseudo_bytes($ivlen);
 
         $rows = array();
         while ($row = $result->fetch_object()) {
-            $row->password = openssl_decrypt($row->password,'cast5-cbc', '187');
+            $row->password = openssl_decrypt($row->password,'cast5-cbc', '187', $options= 0, "12345678");
             $rows[] = $row;
         }
 
@@ -84,42 +89,16 @@ class PasswordRepository extends Repository
 
     public function update($passwordID, $title, $userName, $password, $email, $notes)
     {
-        $query = "SELECT * FROM {$this->tableName} WHERE userID=?";
+        
+        $query = "UPDATE {$this->tableName} SET title = ?, username = ?, password = ?, email = ?, notes = ? WHERE id = ? ;";
+        
+        $ivlen = openssl_cipher_iv_length('cast5-cbc');
+        $iv = openssl_random_pseudo_bytes($ivlen);
 
-        // Datenbankverbindung anfordern und, das Query "preparen" (vorbereiten)
-        // und die Parameter "binden"
+        $password = openssl_encrypt($password,'cast5-cbc', '187', 0, "12345678");
+
         $statement = ConnectionHandler::getConnection()->prepare($query);
-        $statement->bind_param('i', $passwordID);
-
-        $param = '';
-
-        $result = $statement->get_result();
-        if (!$result) {
-            throw new Exception($statement->error);
-        }
-        $query = "UPDATE {$this->tableName} SET";
-        
-        if($result->title != $title){
-            $query += "titel = $title";
-        }
-        if($result->username != $userName){
-            $query += "username = $userName";
-        }
-        
-        if($result->password != $password){
-            $query += "password = $password";
-        }
-
-        if($result->email != $email){
-            $query += "email = $email";
-        }
-        
-        if($result->notes != $notes){
-            $query += "notes = $notes";
-        }
-        
-        $query += "WHERE id = $passwordID ;";
-        $statement = ConnectionHandler::getConnection()->prepare($query);
+        $statement->bind_param('sssssi', $title, $userName, $password, $email,htmlentities($notes), $passwordID);
 
         if (!$statement->execute()) {
             throw new Exception($statement->error);

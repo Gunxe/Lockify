@@ -4,6 +4,7 @@
 	
 	<h1 style="text-align: center;">Login</h1>
 	<hr>
+	<?= isset($_SESSION['error']) ? "<span class='error'>". $_SESSION['error'] . "</span>" : ""; unset($_SESSION['error']);?>
 	<form action="/login/doLogin" method="post">
 		<div class="form-group">
 			<input id="uname" name="uname" type="text" class="form-control" placeholder="Username">

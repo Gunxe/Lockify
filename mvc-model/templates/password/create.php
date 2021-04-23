@@ -4,6 +4,10 @@
 	<h1 style="text-align: center;">Create Password</h1>
 	<hr>
 	
+	<div>
+		<?= isset($_SESSION['error']) ? "<span class='error'>". $_SESSION['error'] . "</span>" : ""; unset($_SESSION['error']);?>
+	</div>
+
 	<form action="/password/doCreate" method="post" class="col-6">
 		<div class="form-group">
 	  	<input id="title" name="title" type="text" class="form-control" placeholder="Title">
